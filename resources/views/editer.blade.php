@@ -47,7 +47,7 @@
               <label for="cours">Cours</label>
               <input type="text" class="form-control" name="cours" value="{{ $student->cours }}"/>
           </div>
-          <button type="submit" class="btn btn-block btn-primary">Modifier</button>
+          <button type="submit" class="btn btn-block btn-success">Modifier</button>
       </form>
   </div>
 </div>

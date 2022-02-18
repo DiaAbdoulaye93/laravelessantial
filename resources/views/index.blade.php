@@ -1,3 +1,4 @@
+
 @extends('layout')
 @section('content')
 <style>
@@ -11,6 +12,7 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
+  <u><h3>Liste des Étudiants</h3></u>
   <table class="table">
     <thead>
         <tr class="table-warning">
@@ -32,11 +34,11 @@
                <td>{{$students->telephone}}</td>
                <td>{{$students->cours}}</td>
             <td class="text-center">
-                <a href="{{ route('students.edit', $students->id)}}" class="btn btn-primary btn-sm"">Edit</a>
+                <a href="{{ route('students.edit', $students->id)}}" class="btn btn-success btn-sm">modifier</a>
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm"" type="submit">Delete</button>
+                    <button class="btn btn-danger btn-sm" type="submit">supprimer</button>
                   </form>
             </td>
         </tr>

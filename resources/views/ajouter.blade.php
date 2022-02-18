@@ -11,7 +11,7 @@
 </style>
 <div class="card push-top">
   <div class="card-header">
-      Ajouter un utilisateur
+      Ajouter un étudiant
   </div>
   <div class="card-body">
     <form method="post" action="{{ route('students.store') }}">
@@ -38,7 +38,7 @@
         <label for="phone">Cours</label>
         <input type="tel" class="form-control" name="cours" />
       </div>
-      <button type="submit" class="btn btn-block btn-danger">Ajouter</button>
+      <button type="submit" class="btn btn-block btn-success">Ajouter</button>
     </form>
   </div>
 </div>

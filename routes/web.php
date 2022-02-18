@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\classeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 
@@ -20,4 +21,14 @@ Route::get('/', function () {
 Route::get('/add', function () {
     return view('ajouter');
 });
+Route::get('/ajouterClasse', function () {
+    return view('classe/ajouterclasse');
+});
+
+//Routes pour les Classes
+Route::get('/listClasses', [classeController::class,'getClasses']);
+Route::get('/listClasses', [classeController::class,'getClasses']);
+
 Route::resource('students', StudentController::class);
+Route::resource('classes', classeController::class);
+
