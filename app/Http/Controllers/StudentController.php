@@ -6,20 +6,24 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
-    public function create(Request $request)
-    {
-        $student= new Student();
-        $student->prenom= $request->input('prenom'); 
-        $student->nom= $request->input('nom');
-        $student->cours= $request->input('cours');
-        $student->email= $request->input('email'); 
-        $student->telephone= $request->input('telephone'); 
-        $student->save();
-        return response()->json([
-            'status' => 200,
-            'message' => 'Ajout étudiant validé',
-        ]);
+    // public function create(Request $request)
+    // {
+    //     $student= new Student();
+    //     $student->prenom= $request->input('prenom'); 
+    //     $student->nom= $request->input('nom');
+    //     $student->cours= $request->input('cours');
+    //     $student->email= $request->input('email'); 
+    //     $student->telephone= $request->input('telephone'); 
+    //     $student->save();
+    //     return response()->json([
+    //         'status' => 200,
+    //         'message' => 'Ajout étudiant validé',
+    //     ]);
 
+    // }
+    public function create()
+    {
+        return view('create');
     }
     public function getstudent(){
         $students= student::all();
@@ -49,8 +53,48 @@ class StudentController extends Controller
             
         ]);
     }
+    
     public function deletestudent($id)
     {
         return student::destroy($id);
+    }
+   
+    public function store(Request $request)
+    {
+    
+        $storeData = $request->validate([
+            'prenom' => 'required|max:255',
+            'nom' => 'required|max:255',
+            'email' => 'required|max:255',
+            'telephone' => 'required|numeric',
+            'cours' => 'required|max:1000',
+        ]);
+
+        $student = Student::create($storeData);
+        return redirect('/students')->with('completed', 'Student has been saved!');
+    }
+    // StudentController.php
+    public function index()
+    {
+        $student = Student::all();
+        return view('index', compact('student'));
+    }
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('editer', compact('student'));
+    }
+    public function update(Request $request, $id)
+    {
+        $updateData = $request->validate([
+            'prenom' => 'required|max:255',
+            'nom' => 'required|max:255',
+            'email' => 'required|max:255',
+            'telephone' => 'required|numeric',
+            'cours' => 'required|max:1000',
+        ]);
+        dd($updateData);
+        Student::whereId($id)->update($updateData);
+        return redirect('/students')->with('completed', 'Student has been updated');
     }
 }
