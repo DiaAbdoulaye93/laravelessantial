@@ -70,8 +70,8 @@ class StudentController extends Controller
             'cours' => 'required|max:1000',
         ]);
 
-        $student = Student::create($storeData);
-        return redirect('/students')->with('completed', 'Student has been saved!');
+         Student::create($storeData);
+        return redirect('/students')->with('completed', 'Enregistrement reussie');
     }
     // StudentController.php
     public function index()
@@ -93,8 +93,13 @@ class StudentController extends Controller
             'telephone' => 'required|numeric',
             'cours' => 'required|max:1000',
         ]);
-        dd($updateData);
         Student::whereId($id)->update($updateData);
-        return redirect('/students')->with('completed', 'Student has been updated');
+        return redirect('/students')->with('completed', 'Modification reussi');
+    }
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+        return redirect('/students')->with('completed', 'Student has been deleted');
     }
 }

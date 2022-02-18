@@ -14,22 +14,23 @@
   <table class="table">
     <thead>
         <tr class="table-warning">
-          <td>ID</td>
-          <td>Name</td>
+  
+          <td>Nom</td>
+          <td>Prénom</td>
           <td>Email</td>
-          <td>Phone</td>
-          <td>Password</td>
+          <td>Téléphone</td>
+          <td>Cours</td>
           <td class="text-center">Action</td>
         </tr>
     </thead>
     <tbody>
         @foreach($student as $students)
         <tr>
-            <td>{{$students->id}}</td>
             <td>{{$students->nom}}</td>
             <td>{{$students->prenom}}</td>
             <td>{{$students->email}}</td>
                <td>{{$students->telephone}}</td>
+               <td>{{$students->cours}}</td>
             <td class="text-center">
                 <a href="{{ route('students.edit', $students->id)}}" class="btn btn-primary btn-sm"">Edit</a>
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">

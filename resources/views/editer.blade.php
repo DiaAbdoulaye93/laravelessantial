@@ -23,6 +23,8 @@
       </div><br />
     @endif
       <form method="post" action="{{ route('students.update', $student->id) }}">
+      @csrf {{ csrf_field() }} 
+      {{ method_field('PUT') }}
       <div class="form-group">
              
               <label for="prenom">Prenom</label>
@@ -35,7 +37,7 @@
           <div class="form-group">
             
               <label for="name">Telephone</label>
-              <input type="text" class="form-control" name="telephone" value="{{ $student->telephone }}"/>
+              <input type="number" class="form-control" name="telephone" value="{{ $student->telephone }}"/>
           </div>
           <div class="form-group">
               <label for="email">Email</label>
@@ -43,7 +45,7 @@
           </div>
           <div class="form-group">
               <label for="cours">Cours</label>
-              <input type="tel" class="form-control" name="cours" value="{{ $student->cours }}"/>
+              <input type="text" class="form-control" name="cours" value="{{ $student->cours }}"/>
           </div>
           <button type="submit" class="btn btn-block btn-primary">Modifier</button>
       </form>

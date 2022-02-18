@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/add', function () {
-    return view('ajout');
+    return view('ajouter');
 });
 Route::resource('students', StudentController::class);
