@@ -20,7 +20,7 @@ class classeController extends Controller
     public function getClasses()
     {
         $classe = classe::all();
-        return view('classe/liste', compact('classe'));
+        return view('classe/listeClasses', compact('classe'));
     }
 
     public function edit($id)

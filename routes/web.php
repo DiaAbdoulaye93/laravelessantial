@@ -18,16 +18,19 @@ use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/add', function () {
-    return view('ajouter');
+Route::get('/ajouterEtudiant', function () {
+    return view('etudiant/ajouterEtudiant');
 });
 Route::get('/ajouterClasse', function () {
     return view('classe/ajouterclasse');
 });
 
+//Routes pour les etudiants
+Route::get('/etudiant', [StudentController::class,'index']);
+
 //Routes pour les Classes
 Route::get('/listClasses', [classeController::class,'getClasses']);
-Route::get('/listClasses', [classeController::class,'getClasses']);
+
 
 Route::resource('students', StudentController::class);
 Route::resource('classes', classeController::class);

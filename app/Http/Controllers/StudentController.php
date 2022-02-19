@@ -67,7 +67,7 @@ class StudentController extends Controller
             'telephone' => 'required|numeric',
             'cours' => 'required|max:1000',
         ]);
-
+         dd($storeData);
          Student::create($storeData);
         return redirect('/students')->with('completed', 'Enregistrement reussie');
     }
@@ -75,12 +75,12 @@ class StudentController extends Controller
     public function index()
     {
         $student = Student::all();
-        return view('index', compact('student'));
+        return view('etudiant/listeEtudiant', compact('student'));
     }
     public function edit($id)
     {
         $student = Student::findOrFail($id);
-        return view('editer', compact('student'));
+        return view('etudiant/editerEtudiant', compact('student'));
     }
     public function update(Request $request, $id)
     {
