@@ -20,14 +20,14 @@
       <div class="form-group">
 
         <label for="prenom">Prenom</label>
-        <input type="text" class="form-control" name="prenom" class="@error('prenom') is-invalid @enderror"/>
+        <input type="text" class="form-control" name="prenom"  value="{{ old('prenom') }}"/>
         @error('prenom')
         <div class="alert alert-danger">Le prenom est un champ obligatoire</div>
         @enderror
       </div>
       <div class="form-group">
         <label for="name">Nom</label>
-        <input type="text" class="form-control" name="nom" />
+        <input type="text" class="form-control" name="nom" value="{{ old('nom') }}" />
         @error('nom')
         <div class="alert alert-danger">Le nom est un champ obligatoire</div>
         @enderror
@@ -35,21 +35,21 @@
       <div class="form-group">
 
         <label for="name">Telephone</label>
-        <input type="number" class="form-control" name="telephone" />
+        <input type="number" class="form-control" name="telephone" value="{{ old('telephone') }}" />
         @error('telephone')
         <div class="alert alert-danger">Le telephone est un champ obligatoire</div>
         @enderror
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" />
+        <input type="email" class="form-control" name="email" value="{{ old('email') }}" />
         @error('email')
         <div class="alert alert-danger">Le mail est un champ obligatoire</div>
         @enderror
       </div>
       <div class="form-group">
         <label for="phone">Cours</label>
-        <input type="tel" class="form-control" name="cours" />
+        <input type="tel" class="form-control" name="cours" value="{{ old('cours') }}" />
         @error('cours')
         <div class="alert alert-danger">Le cours est un champ obligatoire</div>
         @enderror

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
 {
@@ -67,9 +68,17 @@ class StudentController extends Controller
             'telephone' => 'required|numeric',
             'cours' => 'required|max:1000',
         ]);
-         dd($storeData);
-         Student::create($storeData);
-        return redirect('/students')->with('completed', 'Enregistrement reussie');
+        try {
+            Student::create($storeData);
+            Alert::success('Bravo', 'ajout reussi');
+            return view('etudiant/ajouterEtudiant');
+        } catch (\Exception $e){
+            Alert::success('error', 'Veuillez assayer');
+            return view('etudiant/ajouterEtudiant');
+        }
+        // Student::create($storeData);
+        // Alert::success('Bravo', 'ajout reussi');
+        //  return view('etudiant/ajouterEtudiant');
     }
     // StudentController.php
     public function index()
@@ -91,8 +100,14 @@ class StudentController extends Controller
             'telephone' => 'required|numeric',
             'cours' => 'required|max:1000',
         ]);
-        Student::whereId($id)->update($updateData);
-        return redirect('/students')->with('completed', 'Modification reussi');
+        try{
+            Student::whereId($id)->update($updateData);
+            Alert::success('Bravo', 'ajout reussi');
+            return redirect('/students')->with('completed', 'Modification reussi');
+        } catch (\Exception $e){
+            Alert::success('error', 'Veuillez assayer');
+            return view('etudiant/ajouterEtudiant');
+        }
     }
     public function destroy($id)
     {
