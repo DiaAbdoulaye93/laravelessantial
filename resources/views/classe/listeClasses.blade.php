@@ -15,7 +15,7 @@
   <u><h3>Liste des classes</h3></u>
   <table class="table">
     <thead>
-        <tr class="table-warning">
+        <tr class="table-success">
   
           <td>Classe</td>
           <td>Effectif</td>

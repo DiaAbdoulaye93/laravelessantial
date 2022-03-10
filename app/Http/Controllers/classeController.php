@@ -38,5 +38,5 @@ class classeController extends Controller
         ]);
         classe::whereId($id)->update($updateData);
         return redirect('/classes')->with('completed', 'Modification reussi');
-    }
+    }   
 }

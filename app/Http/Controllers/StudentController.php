@@ -89,7 +89,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::findOrFail($id);
-        return view('etudiant/editerEtudiant', compact('student'));
+        return view('etudiant/ajouterEtudiant', compact('student'));
     }
     public function update(Request $request, $id)
     {
@@ -104,7 +104,7 @@ class StudentController extends Controller
             Student::whereId($id)->update($updateData);
             Alert::success('Bravo', 'ajout reussi');
             return redirect('/students')->with('completed', 'Modification reussi');
-        } catch (\Exception $e){
+        }catch (\Exception $e){
             Alert::success('error', 'Veuillez assayer');
             return view('etudiant/ajouterEtudiant');
         }

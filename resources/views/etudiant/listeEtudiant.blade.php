@@ -15,7 +15,7 @@
   <u><h3>Liste des Étudiants</h3></u>
   <table class="table">
     <thead>
-        <tr class="table-warning">
+        <tr class="table-success">
   
           <td>Nom</td>
           <td>Prénom</td>
@@ -34,11 +34,11 @@
                <td>{{$students->telephone}}</td>
                <td>{{$students->cours}}</td>
             <td class="text-center">
-                <a href="{{ route('students.edit', $students->id)}}" class="btn btn-success btn-sm">modifier</a>
+            <a href="{{ route('students.edit', $students->id)}}" class="btn btn-outline-success btn-sm"><i class="fa fa-pencil"></i></a>
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm delete-confirm" type="submit">supprimer</button>
+                    <button class="btn btn-outline-danger btn-sm delete-confirm" type="submit"><i class="fa fa-trash"></i></button>
                   </form>
             </td>
         </tr>
@@ -46,6 +46,7 @@
     </tbody>
   </table>
 <div>
+  
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
   <script type="text/javascript">
@@ -54,11 +55,12 @@
           var name = $(this).data("name");
           event.preventDefault();
           swal({
-              title: `Are you sure you want to delete this record?`,
-              text: "If you delete this, it will be gone forever.",
+              title: `Attention !!!`,
+              text: "Si vous cet étudiant, il disparaîtra pour toujours.",
               icon: "warning",
-              buttons: true,
+              buttons: ["Annuler", "Confirmer"],
               dangerMode: true,
+              cancelButtonColor: '#d33',
           })
           .then((willDelete) => {
             if (willDelete) {

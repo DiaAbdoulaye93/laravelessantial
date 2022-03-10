@@ -9,7 +9,7 @@
     }
 </style>
 <div class="card push-top">
-  <div class="card-header">
+  <div class="card-header bg-success">
     Modifier Etudiant
   </div>
   <div class="card-body">
@@ -19,7 +19,7 @@
             @foreach ($errors->all() as $error)
               <li>{{ $error }}</li>
             @endforeach
-        </ul>
+        </ul> 
       </div><br />
     @endif
       <form method="post" action="{{ route('students.update', $student->id) }}">

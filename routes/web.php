@@ -27,6 +27,7 @@ Route::get('/ajouterClasse', function () {
 
 //Routes pour les etudiants
 Route::get('/etudiant', [StudentController::class,'index']);
+Route::put('/update-etudiant', [StudentController::class,'update']);
 
 //Routes pour les Classes
 Route::get('/listClasses', [classeController::class,'getClasses']);
