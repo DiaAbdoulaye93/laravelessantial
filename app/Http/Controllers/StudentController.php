@@ -102,7 +102,7 @@ class StudentController extends Controller
         ]);
         try{
             Student::whereId($id)->update($updateData);
-            Alert::success('Bravo', 'ajout reussi');
+            Alert::success('Bravo', 'Modification reussi');
             return redirect('/students')->with('completed', 'Modification reussi');
         }catch (\Exception $e){
             Alert::success('error', 'Veuillez assayer');
