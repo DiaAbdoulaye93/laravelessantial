@@ -62,14 +62,15 @@ class StudentController extends Controller
     {
     
         $storeData = $request->validate([
-            'prenom' => 'required|min:2|max:255',
-            'nom' => 'required|max:255',
+            'prenom' => 'required|min:3|max:255',
+            'nom' => 'required|min:2|max:255',
             'email' => 'required|max:255',
             'telephone' => 'required|numeric',
             'cours' => 'required|max:1000',
         ],[
-            'required' => 'The :attribute field is required.',
-            'min' => 'The :attribute min lenght at least 2 chars.',
+            'required' => 'Le :attribute est Obligatoire.',
+            'min' => 'Un :attribute est composé au moins de :min caractéres.',
+            'max' => 'Un :attribute ne doit pas dépasser :max caractéres.',
 
         ]);
         try {
