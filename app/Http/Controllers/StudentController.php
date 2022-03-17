@@ -62,11 +62,15 @@ class StudentController extends Controller
     {
     
         $storeData = $request->validate([
-            'prenom' => 'required|max:255',
+            'prenom' => 'required|min:2|max:255',
             'nom' => 'required|max:255',
             'email' => 'required|max:255',
             'telephone' => 'required|numeric',
             'cours' => 'required|max:1000',
+        ],[
+            'required' => 'The :attribute field is required.',
+            'min' => 'The :attribute min lenght at least 2 chars.',
+
         ]);
         try {
             Student::create($storeData);
@@ -76,9 +80,7 @@ class StudentController extends Controller
             Alert::success('error', 'Veuillez assayer');
             return view('etudiant/ajouterEtudiant');
         }
-        // Student::create($storeData);
-        // Alert::success('Bravo', 'ajout reussi');
-        //  return view('etudiant/ajouterEtudiant');
+       
     }
     // StudentController.php
     public function index()

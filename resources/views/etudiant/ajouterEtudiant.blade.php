@@ -26,7 +26,7 @@
             <label for="prenom">Prenom</label>
             <input type="text" class="form-control" name="prenom" value="{{ old('prenom',$student->prenom ?? '') }}" required />
             @error('prenom')
-            <div class="alert alert-danger">Le prenom est un champ obligatoire</div>
+            <div class="alert alert-danger">{{$message}}</div>
             @enderror
           </div>
           <div class="form-group">
