@@ -16,7 +16,7 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('etudiant/ajouterEtudiant');
 });
 Route::get('/ajouterEtudiant', function () {
     return view('etudiant/ajouterEtudiant');
