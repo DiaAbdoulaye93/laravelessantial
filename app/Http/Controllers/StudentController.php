@@ -120,7 +120,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         // $student->delete();
-        alert()->question('Sweet Alert with warning.')->with();
+      
         // Alert::question('Voulez vous supprimer', 'Cette action est irreversible');
         return redirect('/students')->with('csuccess', 'User deleted successfully');
     }

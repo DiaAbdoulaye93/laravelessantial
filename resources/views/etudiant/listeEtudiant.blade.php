@@ -51,22 +51,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
   <script type="text/javascript">
    $('.delete-confirm').click(function(event) {
-          // var form =  $(this).closest("form");
-          // var name = $(this).data("name");
-          // event.preventDefault();
-          // swal({
-          //     title: `Attention !!!`,
-          //     text: "Si vous cet étudiant, il disparaîtra pour toujours.",
-          //     icon: "warning",
-          //     buttons: ["Annuler", "Confirmer"],
-          //     dangerMode: true,
-          //     cancelButtonColor: '#d33',
-          // })
-          // .then((willDelete) => {
-          //   if (willDelete) {
-          //     form.submit();
-          //   }
-          // });
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Attention !!!`,
+              text: "Si vous cet étudiant, il disparaîtra pour toujours.",
+              icon: "warning",
+              buttons: ["Annuler", "Confirmer"],
+              dangerMode: true,
+              cancelButtonColor: '#d33',
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
       });
   </script>
 @endsection

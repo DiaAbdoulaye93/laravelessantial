@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\classeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('etudiant/ajouterEtudiant');
+    return view('auth/login');
 });
 Route::get('/ajouterEtudiant', function () {
     return view('etudiant/ajouterEtudiant');
@@ -28,6 +29,11 @@ Route::get('/ajouterClasse', function () {
 //Routes pour les etudiants
 Route::get('/etudiant', [StudentController::class,'index']);
 Route::put('/update-etudiant', [StudentController::class,'update']);
+// Autre maniére de gerer les routes, mais dans ce cas on doit le prendre aussi en compte au niveau des vues
+Route::post('/connection', [AuthController::class,'login'])->name('connection');
+Route::get('/inscriptionForm', [AuthController::class,'inscriptionForm'])->name('inscriptionForm');
+Route::post('/inscription', [AuthController::class,'inscription'])->name('inscription');
+Route::get('/loggout', [AuthController::class,'loggout'])->name('loggout');
 
 //Routes pour les Classes
 Route::get('/listClasses', [classeController::class,'getClasses']);
