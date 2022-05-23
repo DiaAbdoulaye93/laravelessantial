@@ -124,11 +124,13 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('ajouterEtudiant')}}">
+        @guest
           <i class="fa fa-home"></i>
           Accueil
           <span class="sr-only">(current)</span>
         </a>
       </li>
+      @endguest
       <li class="nav-item">
         <a class="nav-link" href="{{ url('students')}}">
           <i class="fa-solid fa-graduation-cap fa-2x"></i><br>
@@ -145,6 +147,7 @@
         </a>
       </li>
     </ul>
+
 <ul class="navbar-nav ">
       <li class="nav-item">
         <a class="nav-link" href="#">

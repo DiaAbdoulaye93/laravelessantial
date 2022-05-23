@@ -26,7 +26,7 @@ class AuthController extends Controller
                         // ->withSuccess('Signed in');
         }
   
-        return redirect("login")->withSuccess('Véirfier les information de connection');
+        return redirect("/")->withSuccess('Vérifier les information de connection');
     }
 
     public function inscriptionForm()
