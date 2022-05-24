@@ -1,10 +1,10 @@
 @extends('layout')
 @section('content')
 <main class="signup-form">
-    <div class="cotainer">
+    <div class="cotainer ">
         <div class="row justify-content-center mt-4">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-lg">
                     <h3 class="card-header text-center text-light bg-success">Inscription</h3>
                     <div class="card-body">
                         <form action="{{ route('inscription') }}" method="POST">

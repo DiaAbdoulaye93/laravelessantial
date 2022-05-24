@@ -84,6 +84,7 @@ class StudentController extends Controller
             return view('etudiant/ajouterEtudiant');
         }
     }
+    
     // StudentController.php
     public function index()
     {
@@ -119,9 +120,9 @@ class StudentController extends Controller
 
         $student = Student::findOrFail($id);
 
-        // $student->delete();
+         $student->delete();
       
-        // Alert::question('Voulez vous supprimer', 'Cette action est irreversible');
+        Alert::question('Voulez vous supprimer', 'Cette action est irreversible');
         return redirect('/students')->with('csuccess', 'User deleted successfully');
     }
     public function myNotification($type)

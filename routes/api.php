@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ Route::get('/list-student', [StudentController::class,'getstudent']);
 Route::put('/detail-student/{id}', [StudentController::class,'getstudentdetails']);
 Route::get('/edit-student/{id}', [StudentController::class,'getStudentById']);
 Route::delete('/delete-student/{id}', [StudentController::class,'deletestudent']);
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::post('/connection', [AuthController::class,'loginApi'])->name('connection');
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
