@@ -28,6 +28,7 @@ Route::get('/ajouterClasse', function () {
 
 //Routes pour les etudiants
 Route::get('/etudiant', [StudentController::class,'index']);
+Route::get('students/list', [StudentController::class, 'getStudents'])->name('students.list');
 Route::put('/update-etudiant', [StudentController::class,'update']);
 // Autre maniére de gerer les routes, mais dans ce cas on doit le prendre aussi en compte au niveau des vues
 Route::post('/connection', [AuthController::class,'login'])->name('connection');
@@ -39,6 +40,6 @@ Route::get('/loggout', [AuthController::class,'loggout'])->name('loggout');
 Route::get('/listClasses', [classeController::class,'getClasses']);
 
 
-Route::resource('students', StudentController::class);
+// Route::resource('students', StudentController::class);
 Route::resource('classes', classeController::class);
 

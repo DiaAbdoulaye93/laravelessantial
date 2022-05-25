@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use GrahamCampbell\ResultType\Success;
 use RealRashid\SweetAlert\Facades\Alert;
+use DataTables;
+
 
 class StudentController extends Controller
 {
@@ -77,19 +79,32 @@ class StudentController extends Controller
         ]);
         try {
             Student::create($storeData);
-            toast('insertion reussi','success');
+            toast('insertion reussi', 'success');
             return view('etudiant/ajouterEtudiant');
         } catch (\Exception $e) {
-            toast('Echec insertion','error');
+            toast('Echec insertion', 'error');
             return view('etudiant/ajouterEtudiant');
         }
     }
-    
+
     // StudentController.php
-    public function index()
+    public function index(Request $request)
     {
-        $student = Student::all();
-        return view('etudiant/listeEtudiant', compact('student'));
+        
+        return view('etudiant/listeEtudiant');
+    }
+    public function getStudents()
+    {
+            $data = Student::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
     }
     public function edit($id)
     {
@@ -107,10 +122,10 @@ class StudentController extends Controller
         ]);
         try {
             Student::whereId($id)->update($updateData);
-            toast('Modification reussi','success');
+            toast('Modification reussi', 'success');
             return redirect('/students')->with('completed', 'Modification reussi');
         } catch (\Exception $e) {
-            toast('Echec modification','error');
+            toast('Echec modification', 'error');
             return view('etudiant/ajouterEtudiant');
         }
     }
@@ -120,8 +135,8 @@ class StudentController extends Controller
 
         $student = Student::findOrFail($id);
 
-         $student->delete();
-      
+        $student->delete();
+
         Alert::question('Voulez vous supprimer', 'Cette action est irreversible');
         return redirect('/students')->with('csuccess', 'User deleted successfully');
     }

@@ -11,12 +11,10 @@
     {{ session()->get('success') }}
   </div><br />
   @endif
-.table
-  <table class="table shadow-lg">
-    <caption class="text-center">Liste des étudiants</caption>
+  <table class="table shadow-lg yajra-datatable" id="table">
+  
     <thead>
-      <tr class="table-success">
-
+      <tr class="table-success ">
         <td>Nom</td>
         <td>Prénom</td>
         <td>Email</td>
@@ -26,47 +24,74 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($student as $students)
-      <tr>
-        <td>{{$students->nom}}</td>
-        <td>{{$students->prenom}}</td>
-        <td>{{$students->email}}</td>
-        <td>{{$students->telephone}}</td>
-        <td>{{$students->cours}}</td>
-        <td class="text-center">
-          <a href="{{ route('students.edit', $students->id)}}" class="btn btn-outline-success btn-sm"><i class="fa fa-pencil"></i></a>
-          <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-outline-danger btn-sm delete-confirm" type="submit"><i class="fa fa-trash"></i></button>
-          </form>
-        </td>
-      </tr>
-      @endforeach
+
     </tbody>
   </table>
 
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <script type="text/javascript">
-      $('.delete-confirm').click(function(event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
-        event.preventDefault();
-        swal({
-            title: `Attention !!!`,
-            text: "Si vous cet étudiant, il disparaîtra pour toujours.",
-            icon: "warning",
-            buttons: ["Annuler", "Confirmer"],
-            dangerMode: true,
-            cancelButtonColor: '#d33',
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script type="text/javascript">
+   
+    $(function() {
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('students.list') }}",
+        columns: [
+          {
+            data: 'nom',
+            name: 'nom'
+          },
+          {
+            data: 'prenom',
+            name: 'prenom'
+          },
+          {
+            data: 'email',
+            name: 'email'
+          },
+          {
+            data: 'telephone',
+            name: 'telephone'
+          },
+          {
+            data: 'cours',
+            name: 'cours'
+          },
+          {
+                data: 'action', 
+                name: 'action', 
+                orderable: true, 
+                searchable: true
+            },
+        ]
       });
-    </script>
-    @endsection
+    });
+
+    $('.delete-confirm').click(function(event) {
+      var form = $(this).closest("form");
+      var name = $(this).data("name");
+      event.preventDefault();
+      swal({
+          title: `Attention !!!`,
+          text: "Si vous cet étudiant, il disparaîtra pour toujours.",
+          icon: "warning",
+          buttons: ["Annuler", "Confirmer"],
+          dangerMode: true,
+          cancelButtonColor: '#d33',
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            form.submit();
+          }
+        });
+    });
+  </script>
+  @endsection
