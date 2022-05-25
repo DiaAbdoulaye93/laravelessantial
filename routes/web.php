@@ -28,7 +28,7 @@ Route::get('/ajouterClasse', function () {
 
 //Routes pour les etudiants
 Route::get('/etudiant', [StudentController::class,'index']);
-Route::get('students/list', [StudentController::class, 'getStudents'])->name('students.list');
+Route::get('students/list', [StudentController::class, 'getStudents']);
 Route::put('/update-etudiant', [StudentController::class,'update']);
 // Autre maniére de gerer les routes, mais dans ce cas on doit le prendre aussi en compte au niveau des vues
 Route::post('/connection', [AuthController::class,'login'])->name('connection');
