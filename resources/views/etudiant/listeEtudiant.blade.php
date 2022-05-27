@@ -15,6 +15,7 @@
 
     <thead>
       <tr class="table-success ">
+        <td>Id</td>
         <td>Nom</td>
         <td>Prénom</td>
         <td>Email</td>
@@ -43,7 +44,9 @@
         processing: true,
         serverSide: true,
         ajax: "students/list",
-        columns: [{
+        columns: [
+            {data: 'id', name: 'Id'},
+          {
             data: 'nom',
             name: 'nom'
           },

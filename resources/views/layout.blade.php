@@ -21,7 +21,7 @@
    @if(Auth::user())
    @include('navbar')
    @endif
-   <div class="container">
+   <div class="container col-md-11">
       @yield('content')
    </div>
 
